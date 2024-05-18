@@ -10,7 +10,10 @@ import Image from "next/image";
 import { FaRegClock } from "react-icons/fa";
 import { FaTheaterMasks } from "react-icons/fa";
 import { IoLockOpenOutline } from "react-icons/io5";
-import { PrismicRichText } from "@prismicio/react";
+import { TiDocumentText } from "react-icons/ti";
+import { MdOutlineLocalMovies } from "react-icons/md";
+import { PrismicRichText, SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
 
 type Params = { uid: string };
 
@@ -73,6 +76,7 @@ export default async function Page({ params }: { params: Params }) {
             </div>
           </div>
           <div className={styles.moviePageSinopse}>
+            <h3><TiDocumentText size={24}/> Sinopse</h3>
             <PrismicRichText field={page.data.sinopse}/>
           </div>
         </div>
@@ -83,6 +87,10 @@ export default async function Page({ params }: { params: Params }) {
           className={styles.moviePageTrailerIFrame}
           dangerouslySetInnerHTML={{__html: String(page.data.trailer.html)}} 
         />
+      </div>
+      <div className={styles.moviePageSchedule}>
+        <h3><MdOutlineLocalMovies size={24} />Salas & Horários</h3>
+        <SliceZone slices={page.data.slices} components={components} />
       </div>
     </section>
   )
