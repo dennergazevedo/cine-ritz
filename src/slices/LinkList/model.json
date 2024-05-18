@@ -1,0 +1,45 @@
+{
+  "id": "link_list",
+  "type": "SharedSlice",
+  "name": "LinkList",
+  "description": "LinkList",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Título",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading3"
+          }
+        }
+      },
+      "items": {
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "select": null
+          }
+        },
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}

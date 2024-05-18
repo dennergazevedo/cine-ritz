@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  link_list: dynamic(() => import("./LinkList")),
   rich_text: dynamic(() => import("./RichText")),
   spotlight: dynamic(() => import("./Spotlight")),
 };

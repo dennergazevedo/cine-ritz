@@ -4,6 +4,40 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type FooterDocumentDataSlicesSlice = LinkListSlice;
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * Slice Zone field in *Footer*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<FooterDocumentDataSlicesSlice>;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
 type PageDocumentDataSlicesSlice = SpotlightSlice | RichTextSlice;
 
 /**
@@ -110,7 +144,80 @@ export type SpotlightDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = PageDocument | SpotlightDocument;
+export type AllDocumentTypes =
+  | FooterDocument
+  | PageDocument
+  | SpotlightDocument;
+
+/**
+ * Primary content in *LinkList → Default → Primary*
+ */
+export interface LinkListSliceDefaultPrimary {
+  /**
+   * Título field in *LinkList → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_list.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.TitleField;
+}
+
+/**
+ * Primary content in *LinkList → Items*
+ */
+export interface LinkListSliceDefaultItem {
+  /**
+   * Link field in *LinkList → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_list.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Label field in *LinkList → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: link_list.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for LinkList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LinkListSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<LinkListSliceDefaultPrimary>,
+  Simplify<LinkListSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *LinkList*
+ */
+type LinkListSliceVariation = LinkListSliceDefault;
+
+/**
+ * LinkList Shared Slice
+ *
+ * - **API ID**: `link_list`
+ * - **Description**: LinkList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LinkListSlice = prismic.SharedSlice<
+  "link_list",
+  LinkListSliceVariation
+>;
 
 /**
  * Primary content in *RichText → Default → Primary*
@@ -282,6 +389,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      FooterDocument,
+      FooterDocumentData,
+      FooterDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
@@ -289,6 +399,11 @@ declare module "@prismicio/client" {
       SpotlightDocumentData,
       SpotlightDocumentDataSlicesSlice,
       AllDocumentTypes,
+      LinkListSlice,
+      LinkListSliceDefaultPrimary,
+      LinkListSliceDefaultItem,
+      LinkListSliceVariation,
+      LinkListSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

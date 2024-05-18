@@ -4,10 +4,17 @@ import styles from './styles.module.scss'
 import logo from '../../assets/logo.png'
 import Link from 'next/link';
 
+import { createClient } from "@/prismicio";
+import { components } from "@/slices";
+
 import { FaInstagram } from "react-icons/fa6";
 import { SlLocationPin } from "react-icons/sl";
+import { SliceZone } from '@prismicio/react';
 
-const Footer: React.FC = () => {
+const Footer: React.FC = async () => {
+  const client = createClient();
+  const footer = await client.getAllByType("footer");
+
   return (
     <footer className={styles.footerContainer}>
       <div className={styles.footerBody}>
@@ -41,18 +48,7 @@ const Footer: React.FC = () => {
             </p>
           </a>
         </div>
-        <div className={styles.dividerContainer}>
-          <h3 className={styles.footerTitle}>Institucional</h3>
-          <a href="#" className={styles.footerText}>Política de Privacidade</a>
-          <a href="#" className={styles.footerText}>Política de Preços</a>
-          <a href="#" className={styles.footerText}>Política de Reembolso</a>
-        </div>
-        <div className={styles.dividerContainer}>
-          <h3 className={styles.footerTitle}>Ajuda</h3>
-          <a href="#" className={styles.footerText}>Onde comprar</a>
-          <a href="#" className={styles.footerText}>Filmes em cartaz</a>
-          <a href="#" className={styles.footerText}>Próximos filmes</a>
-        </div>
+        <SliceZone slices={footer?.[0]?.data.slices} components={components} />
       </div>
       <div className={styles.privacy}>
         © Cine Ritz 2024 | Todos os direitos reservados | Feito por <a href="https://social.dnnr.dev" target="_blank">dnnr</a>

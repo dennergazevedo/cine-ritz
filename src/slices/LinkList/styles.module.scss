@@ -1,0 +1,39 @@
+.dividerContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacing-2);
+  width: auto;
+
+  a{
+    font-size: var(--font-size-default);
+    color: var(--gray-scale-3);
+    cursor: pointer;
+    transition: .2s all;
+
+    &:hover{
+      color: var(--gray-scale-2);
+    }
+  }
+
+  h3{
+    display: flex;
+    align-items: center;
+    color: var(--gray-scale-2);
+    font-size: var(--font-size-index);
+    margin-bottom: var(--spacing-2);
+    height: 40px;
+  }
+}
+
+@media(min-width: 1024px){
+  .dividerContainer{
+    gap: var(--spacing-4);
+    max-width: var(--divider-max-size);
+
+    h3{
+      margin-bottom: var(--spacing-6);
+    }
+  }
+}
