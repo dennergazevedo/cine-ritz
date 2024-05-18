@@ -144,6 +144,40 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
+type PromotionDocumentDataSlicesSlice = PromotionSlice;
+
+/**
+ * Content for Promotion documents
+ */
+interface PromotionDocumentData {
+  /**
+   * Slice Zone field in *Promotion*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: promotion.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PromotionDocumentDataSlicesSlice>;
+}
+
+/**
+ * Promotion document from Prismic
+ *
+ * - **API ID**: `promotion`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PromotionDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<PromotionDocumentData>,
+    "promotion",
+    Lang
+  >;
+
 type SpotlightDocumentDataSlicesSlice = SpotlightSlice;
 
 /**
@@ -182,6 +216,7 @@ export type AllDocumentTypes =
   | ComingsoonDocument
   | FooterDocument
   | PageDocument
+  | PromotionDocument
   | SpotlightDocument;
 
 /**
@@ -317,6 +352,71 @@ type MovieBannerSliceVariation = MovieBannerSliceDefault;
 export type MovieBannerSlice = prismic.SharedSlice<
   "movie_banner",
   MovieBannerSliceVariation
+>;
+
+/**
+ * Primary content in *Promotion → Default → Primary*
+ */
+export interface PromotionSliceDefaultPrimary {
+  /**
+   * Título field in *Promotion → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: promotion.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Conteúdo field in *Promotion → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: promotion.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Imagem field in *Promotion → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: promotion.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Promotion Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PromotionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PromotionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Promotion*
+ */
+type PromotionSliceVariation = PromotionSliceDefault;
+
+/**
+ * Promotion Shared Slice
+ *
+ * - **API ID**: `promotion`
+ * - **Description**: Promotion
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PromotionSlice = prismic.SharedSlice<
+  "promotion",
+  PromotionSliceVariation
 >;
 
 /**
@@ -498,6 +598,9 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      PromotionDocument,
+      PromotionDocumentData,
+      PromotionDocumentDataSlicesSlice,
       SpotlightDocument,
       SpotlightDocumentData,
       SpotlightDocumentDataSlicesSlice,
@@ -511,6 +614,10 @@ declare module "@prismicio/client" {
       MovieBannerSliceDefaultPrimary,
       MovieBannerSliceVariation,
       MovieBannerSliceDefault,
+      PromotionSlice,
+      PromotionSliceDefaultPrimary,
+      PromotionSliceVariation,
+      PromotionSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

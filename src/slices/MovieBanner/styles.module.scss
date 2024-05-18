@@ -3,18 +3,64 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 50%;
+  width: calc(50% - var(--spacing-3));
   position: relative;
+  margin-bottom: var(--spacing-3);
 
   .movieBannerImageContainer{
     display: flex;
     position: relative;
-    width: var(--movie-banner-size);
-    height: var(--movie-banner-height);
+    width: calc(40vw - var(--spacing-3));
+    height: calc(40vw * var(--spotlight-image-proportion));
 
     img{
       object-fit: cover;
       border-radius: var(--radius-medium);
+    }
+  }
+
+  >h3{
+    font-size: var(--font-size-default);
+    color: var(--gray-scale-2);
+    margin-top: var(--spacing-3);
+    font-weight: normal;
+    cursor: default;
+  }
+
+  .movieBannerFlagDate{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: var(--spacing-3);
+    background: rgb(254,243,20);
+    background: linear-gradient(125deg, rgba(254,243,20,1) 0%, rgba(238,50,53,1) 44%, rgba(238,50,53,1) 100%);
+    color: var(--neutral-color);
+    padding: var(--spacing-3) var(--spacing-5);
+    border-radius: 0 0 var(--radius-medium) var(--radius-medium);
+    box-shadow: 0px 2px 4px 2px #0005;
+
+    .dayContainer{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-1);
+
+      .month{
+        font-size: var(--font-size-small);
+      }
+
+      .day{
+        font-size: var(--font-size-default);
+        font-weight: 600;
+      }
+    }
+
+    .year{
+      font-size: var(--font-size-normal);
+      font-weight: 600;
     }
   }
 }
@@ -22,5 +68,14 @@
 @media (min-width: 1024px){
   .movieBannerContainer{
     width: 30%;
+
+    .movieBannerImageContainer{
+      width: var(--movie-banner-size);
+      height: var(--movie-banner-height);
+
+      img{
+        object-fit: cover;
+      }
+    }
   }
 }

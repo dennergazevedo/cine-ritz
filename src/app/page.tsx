@@ -8,8 +8,10 @@ import { components } from "@/slices";
 
 import styles from './page.module.scss'
 import Slider from "./components/Slider";
-import { GiClapperboard } from "react-icons/gi";
 import ComingSoon from "./components/ComingSoon";
+import { GiClapperboard } from "react-icons/gi";
+import { BiCameraMovie } from "react-icons/bi";
+import { IoTicketOutline } from "react-icons/io5";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -29,11 +31,12 @@ export default async function Index() {
   const client = createClient();
   const spotlight = await client.getByUID("spotlight", "spotlight");
   const comingSoon = await client.getByUID("comingsoon", "coming-soon");
+  const promotion = await client.getByUID("promotion", "promotion");
 
   return (
     <main className={styles.main}>
       <div className={styles.inTheaters}>
-        <h3>Em exibição</h3>
+        <h3><BiCameraMovie size={24}/>Em exibição</h3>
         <Slider>
           <SliceZone slices={spotlight.data.slices} components={components} />
         </Slider>
@@ -41,6 +44,12 @@ export default async function Index() {
       <div className={styles.comingSoon}>
         <h3><GiClapperboard size={24} /> Em breve</h3>
         <ComingSoon banners={comingSoon.data.slices}/>
+      </div>
+      <div className={styles.inTheaters}>
+        <h3><IoTicketOutline size={24}/>Promoções</h3>
+        <Slider>
+          <SliceZone slices={promotion.data.slices} components={components} />
+        </Slider>
       </div>
     </main>
   )

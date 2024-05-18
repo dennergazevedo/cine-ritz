@@ -1,6 +1,6 @@
 'use client'
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import styles from './styles.module.scss';
 
 const Slider = ({ children }:SliderProps) => {
@@ -37,7 +37,7 @@ const Slider = ({ children }:SliderProps) => {
         className={styles.slider}
         style={{ x: `-${currentIndex * 100}%` }}
         animate={{ x: `-${currentIndex * 100}%` }}
-        transition={{ x: { type: 'spring', stiffness: 300, damping: 30 } }}
+        transition={{ type: "spring", bounce: 0.25, duration: 0.1 }}
       >
         {children.map((child: React.ReactNode, index: number) => (
           <div 

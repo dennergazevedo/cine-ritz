@@ -8,7 +8,7 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ banners }: ComingSoonProps) => 
 
   return (
     <section className={styles.comingSoonContainer}>
-      <SliceZone slices={banners} components={components} />;
+      <SliceZone slices={banners} components={components} />
     </section>
   )
 }
