@@ -35,6 +35,13 @@
 				"__TYPE__": "FieldContent",
 				"type": "Date",
 				"value": "2019-04-05"
+			},
+			"link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io"
+				}
 			}
 		},
 		"items": []

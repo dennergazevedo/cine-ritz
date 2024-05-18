@@ -72,11 +72,12 @@
             "single": "paragraph"
           }
         },
-        "slug": {
-          "type": "Text",
+        "link": {
+          "type": "Link",
           "config": {
-            "label": "Slug",
-            "placeholder": ""
+            "label": "Link",
+            "placeholder": "",
+            "select": null
           }
         }
       },

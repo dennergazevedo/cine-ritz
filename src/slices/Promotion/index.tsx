@@ -1,5 +1,5 @@
 import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { PrismicLink, PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import styles from './styles.module.scss'
 import Image from "next/image";
 
@@ -8,10 +8,11 @@ export type PromotionProps = SliceComponentProps<Content.PromotionSlice>;
 const Promotion = ({ slice }: PromotionProps): JSX.Element => {
 
   return (
-    <section
+    <PrismicLink
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={styles.promotionContainer}
+      field={slice.primary.link}
     >
       <Image 
         src={String(slice.primary.image.url)} 
@@ -22,7 +23,7 @@ const Promotion = ({ slice }: PromotionProps): JSX.Element => {
       <div>
         <PrismicRichText field={slice.primary.content} />
       </div>
-    </section>
+    </PrismicLink>
   );
 };
 

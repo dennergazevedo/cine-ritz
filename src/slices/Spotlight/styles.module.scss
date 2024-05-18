@@ -16,8 +16,9 @@
     overflow: hidden;
     position: relative;
     margin-bottom: var(--spacing-6);
-    pointer-events: none;
     user-select: none;
+    z-index: 1;
+    cursor: pointer;
 
     img{
       object-fit: cover;
@@ -29,7 +30,6 @@
     flex-direction: column;
     width: 100%;
     gap: var(--spacing-3);
-    pointer-events: none;
     user-select: none;
 
     .spotlightContentInfo{

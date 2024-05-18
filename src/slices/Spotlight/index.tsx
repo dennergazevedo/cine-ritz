@@ -1,5 +1,5 @@
 import { Content } from "@prismicio/client";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { PrismicLink, PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import styles from './styles.module.scss'
 import Image from "next/image";
@@ -16,15 +16,17 @@ const Spotlight = ({ slice }: SpotlightProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className={styles.spotlightItem}
     >
-      <div className={styles.spotlightImageContainer}>
+      <PrismicLink field={slice.primary.link} className={styles.spotlightImageContainer}>
         <Image 
           src={String(slice.primary.image.url)} 
           alt={String(slice.primary.image.alt)}
           fill
         />
-      </div>
+      </PrismicLink>
       <div className={styles.spotlightContent}>
-        <PrismicRichText field={slice.primary.name} />
+        <PrismicLink field={slice.primary.link}>
+          <PrismicRichText field={slice.primary.name} />
+        </PrismicLink>
         <div className={styles.spotlightContentInfo}>
           <PrismicRichText field={slice.primary.theme} />
           <PrismicRichText field={slice.primary.duration} />
@@ -39,7 +41,7 @@ const Spotlight = ({ slice }: SpotlightProps): JSX.Element => {
           title={slice.primary.name}
           iframe={String(slice.primary.trailer.html)} 
         />
-        <ShowMore link={'/filmes/' + String(slice.primary.slug)}/>
+        <ShowMore link={slice.primary.link}/>
       </div>
     </section>
   );

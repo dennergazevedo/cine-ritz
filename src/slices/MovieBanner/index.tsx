@@ -1,5 +1,5 @@
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { PrismicLink, SliceComponentProps } from "@prismicio/react";
 import styles from './styles.module.scss';
 import Image from "next/image";
 import { months } from "@/utils/month";
@@ -11,10 +11,11 @@ const MovieBanner = ({ slice }: MovieBannerProps): JSX.Element => {
   const releaseDate = new Date(String(slice.primary.comingIn));
 
   return (
-    <section
+    <PrismicLink
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={styles.movieBannerContainer}
+      field={slice.primary.link}
     >
       <div className={styles.movieBannerImageContainer}>
         <Image 
@@ -36,7 +37,7 @@ const MovieBanner = ({ slice }: MovieBannerProps): JSX.Element => {
           <p className={styles.year}>{releaseDate.getFullYear()}</p>
         </div>
       }
-    </section>
+    </PrismicLink>
   );
 };
 

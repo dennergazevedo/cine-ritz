@@ -535,6 +535,16 @@ export interface MovieBannerSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#date
    */
   comingIn: prismic.DateField;
+
+  /**
+   * Link field in *MovieBanner → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie_banner.default.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
 }
 
 /**
@@ -600,6 +610,16 @@ export interface PromotionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
+
+  /**
+   * Link field in *Promotion → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: promotion.default.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
 }
 
 /**
@@ -842,14 +862,14 @@ export interface SpotlightSliceDefaultPrimary {
   theme: prismic.RichTextField;
 
   /**
-   * Slug field in *Spotlight → Default → Primary*
+   * Link field in *Spotlight → Default → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.default.primary.slug
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **API ID Path**: spotlight.default.primary.link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  slug: prismic.KeyTextField;
+  link: prismic.LinkField;
 }
 
 /**

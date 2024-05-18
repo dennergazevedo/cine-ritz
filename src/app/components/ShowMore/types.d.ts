@@ -1,4 +1,4 @@
 interface ShowMoreProps{
-  link: string
+  link: LinkField
   target?: React.HTMLAttributeAnchorTarget
 }
