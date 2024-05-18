@@ -355,82 +355,12 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type PromotionDocumentDataSlicesSlice = PromotionSlice;
-
-/**
- * Content for Promotion documents
- */
-interface PromotionDocumentData {
-  /**
-   * Slice Zone field in *Promotion*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: promotion.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<PromotionDocumentDataSlicesSlice>;
-}
-
-/**
- * Promotion document from Prismic
- *
- * - **API ID**: `promotion`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type PromotionDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<PromotionDocumentData>,
-    "promotion",
-    Lang
-  >;
-
-type SpotlightDocumentDataSlicesSlice = SpotlightSlice;
-
-/**
- * Content for Spotlight documents
- */
-interface SpotlightDocumentData {
-  /**
-   * Slice Zone field in *Spotlight*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<SpotlightDocumentDataSlicesSlice>;
-}
-
-/**
- * Spotlight document from Prismic
- *
- * - **API ID**: `spotlight`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type SpotlightDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<SpotlightDocumentData>,
-    "spotlight",
-    Lang
-  >;
-
 export type AllDocumentTypes =
   | ComingsoonDocument
   | FooterDocument
   | InstitutionalDocument
   | MovieDocument
-  | PageDocument
-  | PromotionDocument
-  | SpotlightDocument;
+  | PageDocument;
 
 /**
  * Primary content in *LinkList → Default → Primary*
@@ -503,45 +433,45 @@ export type LinkListSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *MovieBanner → Default → Primary*
+ * Primary content in *MovieBanner → Items*
  */
-export interface MovieBannerSliceDefaultPrimary {
+export interface MovieBannerSliceDefaultItem {
   /**
-   * Título field in *MovieBanner → Default → Primary*
+   * Título field in *MovieBanner → Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: movie_banner.default.primary.title
+   * - **API ID Path**: movie_banner.items[].title
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Banner field in *MovieBanner → Default → Primary*
+   * Banner field in *MovieBanner → Items*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: movie_banner.default.primary.banner
+   * - **API ID Path**: movie_banner.items[].banner
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   banner: prismic.ImageField<never>;
 
   /**
-   * Data de Lançamento field in *MovieBanner → Default → Primary*
+   * Data de Lançamento field in *MovieBanner → Items*
    *
    * - **Field Type**: Date
    * - **Placeholder**: *None*
-   * - **API ID Path**: movie_banner.default.primary.comingIn
+   * - **API ID Path**: movie_banner.items[].comingIn
    * - **Documentation**: https://prismic.io/docs/field#date
    */
   comingIn: prismic.DateField;
 
   /**
-   * Link field in *MovieBanner → Default → Primary*
+   * Link field in *MovieBanner → Items*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: movie_banner.default.primary.link
+   * - **API ID Path**: movie_banner.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField;
@@ -556,8 +486,8 @@ export interface MovieBannerSliceDefaultPrimary {
  */
 export type MovieBannerSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<MovieBannerSliceDefaultPrimary>,
-  never
+  Record<string, never>,
+  Simplify<MovieBannerSliceDefaultItem>
 >;
 
 /**
@@ -578,45 +508,45 @@ export type MovieBannerSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *Promotion → Default → Primary*
+ * Primary content in *Promotion → Items*
  */
-export interface PromotionSliceDefaultPrimary {
+export interface PromotionSliceDefaultItem {
   /**
-   * Título field in *Promotion → Default → Primary*
+   * Título field in *Promotion → Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: promotion.default.primary.title
+   * - **API ID Path**: promotion.items[].title
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Conteúdo field in *Promotion → Default → Primary*
+   * Conteúdo field in *Promotion → Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: promotion.default.primary.content
+   * - **API ID Path**: promotion.items[].content
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField;
 
   /**
-   * Imagem field in *Promotion → Default → Primary*
+   * Imagem field in *Promotion → Items*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: promotion.default.primary.image
+   * - **API ID Path**: promotion.items[].image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
 
   /**
-   * Link field in *Promotion → Default → Primary*
+   * Link field in *Promotion → Items*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: promotion.default.primary.link
+   * - **API ID Path**: promotion.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField;
@@ -631,8 +561,8 @@ export interface PromotionSliceDefaultPrimary {
  */
 export type PromotionSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<PromotionSliceDefaultPrimary>,
-  never
+  Record<string, never>,
+  Simplify<PromotionSliceDefaultItem>
 >;
 
 /**
@@ -788,85 +718,85 @@ export type ScheduleSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *Spotlight → Default → Primary*
+ * Primary content in *Spotlight → Items*
  */
-export interface SpotlightSliceDefaultPrimary {
+export interface SpotlightSliceDefaultItem {
   /**
-   * Nome field in *Spotlight → Default → Primary*
+   * Nome field in *Spotlight → Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.default.primary.name
+   * - **API ID Path**: spotlight.items[].name
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   name: prismic.RichTextField;
 
   /**
-   * Sinopse field in *Spotlight → Default → Primary*
+   * Sinopse field in *Spotlight → Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.default.primary.sinopse
+   * - **API ID Path**: spotlight.items[].sinopse
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   sinopse: prismic.RichTextField;
 
   /**
-   * Imagem field in *Spotlight → Default → Primary*
+   * Imagem field in *Spotlight → Items*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.default.primary.image
+   * - **API ID Path**: spotlight.items[].image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
 
   /**
-   * Duração field in *Spotlight → Default → Primary*
+   * Duração field in *Spotlight → Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.default.primary.duration
+   * - **API ID Path**: spotlight.items[].duration
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   duration: prismic.RichTextField;
 
   /**
-   * Classificação field in *Spotlight → Default → Primary*
+   * Classificação field in *Spotlight → Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.default.primary.classification
+   * - **API ID Path**: spotlight.items[].classification
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   classification: prismic.RichTextField;
 
   /**
-   * Trailer field in *Spotlight → Default → Primary*
+   * Trailer field in *Spotlight → Items*
    *
    * - **Field Type**: Embed
    * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.default.primary.trailer
+   * - **API ID Path**: spotlight.items[].trailer
    * - **Documentation**: https://prismic.io/docs/field#embed
    */
   trailer: prismic.EmbedField;
 
   /**
-   * Tema field in *Spotlight → Default → Primary*
+   * Tema field in *Spotlight → Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.default.primary.theme
+   * - **API ID Path**: spotlight.items[].theme
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   theme: prismic.RichTextField;
 
   /**
-   * Link field in *Spotlight → Default → Primary*
+   * Link field in *Spotlight → Items*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: spotlight.default.primary.link
+   * - **API ID Path**: spotlight.items[].link
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   link: prismic.LinkField;
@@ -881,8 +811,8 @@ export interface SpotlightSliceDefaultPrimary {
  */
 export type SpotlightSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<SpotlightSliceDefaultPrimary>,
-  never
+  Record<string, never>,
+  Simplify<SpotlightSliceDefaultItem>
 >;
 
 /**
@@ -927,12 +857,6 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
-      PromotionDocument,
-      PromotionDocumentData,
-      PromotionDocumentDataSlicesSlice,
-      SpotlightDocument,
-      SpotlightDocumentData,
-      SpotlightDocumentDataSlicesSlice,
       AllDocumentTypes,
       LinkListSlice,
       LinkListSliceDefaultPrimary,
@@ -940,11 +864,11 @@ declare module "@prismicio/client" {
       LinkListSliceVariation,
       LinkListSliceDefault,
       MovieBannerSlice,
-      MovieBannerSliceDefaultPrimary,
+      MovieBannerSliceDefaultItem,
       MovieBannerSliceVariation,
       MovieBannerSliceDefault,
       PromotionSlice,
-      PromotionSliceDefaultPrimary,
+      PromotionSliceDefaultItem,
       PromotionSliceVariation,
       PromotionSliceDefault,
       RichTextSlice,
@@ -957,7 +881,7 @@ declare module "@prismicio/client" {
       ScheduleSliceVariation,
       ScheduleSliceDefault,
       SpotlightSlice,
-      SpotlightSliceDefaultPrimary,
+      SpotlightSliceDefaultItem,
       SpotlightSliceVariation,
       SpotlightSliceDefault,
     };

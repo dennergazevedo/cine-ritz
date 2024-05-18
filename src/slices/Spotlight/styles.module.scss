@@ -71,6 +71,42 @@
     margin-top: var(--spacing-8);
     gap: var(--spacing-3);
     flex-wrap: wrap;
+
+    .showMoreLink{
+      display: flex;
+      padding: var(--spacing-3) var(--spacing-8);
+      background-color: var(--neutral-color);
+      border-radius: var(--radius-full);
+      color: var(--primary-color);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      align-items: center;
+      gap: var(--spacing-3);
+      font-size: var(--font-size-default);
+      height: 44px;
+      white-space: nowrap;
+      user-select: none;
+    }
+  }
+}
+
+.inTheaters{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  >h3{
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    font-size: var(--font-size-index);
+    margin: 0 auto;
+    margin-bottom: var(--spacing-6);
+    font-weight: normal;
+    width: 80vw;
   }
 }
 
@@ -89,6 +125,14 @@
       height: calc(var(--spotlight-max-size) * var(--spotlight-image-proportion) + var(--spacing-6));
       min-height: unset;
       margin-bottom: 0;
+      pointer-events: none;
+    }
+  }
+
+  .inTheaters{
+    >h3{
+      width: 60vw;
+      margin-bottom: var(--spacing-6);
     }
   }
 }

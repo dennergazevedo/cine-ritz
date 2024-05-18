@@ -5,43 +5,6 @@
   width: 100%;
   padding: var(--spacing-4) 0;
   gap: var(--spacing-5);
-
-  .inTheaters{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
-    >h3{
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-3);
-      font-size: var(--font-size-index);
-      margin: 0 auto;
-      margin-bottom: var(--spacing-6);
-      font-weight: normal;
-      width: 80vw;
-    }
-  }
-
-  .comingSoon{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 80vw;
-    margin: var(--spacing-10) auto;
-
-    >h3{
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-3);
-      font-size: var(--font-size-index);
-      margin-bottom: var(--spacing-6);
-      font-weight: normal;
-    }
-  }
 }
 
 .bg{
@@ -64,16 +27,5 @@
 @media (min-width: 1024px){
   .main{
     padding: var(--spacing-4) 0;
-
-    .inTheaters{
-      >h3{
-        width: 60vw;
-        margin-bottom: var(--spacing-6);
-      }
-    }
-
-    .comingSoon{
-      width: 60vw;
-    }
   }
 }

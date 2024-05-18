@@ -11,14 +11,15 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {
+      "primary": {},
+      "items": {
         "name": {
           "type": "StructuredText",
           "config": {
             "label": "Nome",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "heading3"
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
         "sinopse": {
@@ -80,8 +81,7 @@
             "select": null
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

@@ -11,7 +11,8 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {
+      "primary": {},
+      "items": {
         "title": {
           "type": "Text",
           "config": {
@@ -42,8 +43,7 @@
             "select": null
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

@@ -6,38 +6,48 @@ import { months } from "@/utils/month";
 
 export type MovieBannerProps = SliceComponentProps<Content.MovieBannerSlice>;
 
+import { GiClapperboard } from "react-icons/gi";
+
 const MovieBanner = ({ slice }: MovieBannerProps): JSX.Element => {
 
-  const releaseDate = new Date(String(slice.primary.comingIn));
-
   return (
-    <PrismicLink
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className={styles.movieBannerContainer}
-      field={slice.primary.link}
-    >
-      <div className={styles.movieBannerImageContainer}>
-        <Image 
-          src={String(slice.primary.banner.url)} 
-          alt={String(slice.primary.banner.alt)}
-          fill
-        />
-      </div>
-      <h3>
-        {slice.primary.title}
-      </h3>
-      {
-        slice?.primary?.comingIn &&
-        <div className={styles.movieBannerFlagDate}>
-          <div className={styles.dayContainer}>
-            <p className={styles.month}>{months[releaseDate.getMonth()]}</p>
-            <p className={styles.day}>{releaseDate.getDate()}</p>
-          </div>
-          <p className={styles.year}>{releaseDate.getFullYear()}</p>
-        </div>
-      }
-    </PrismicLink>
+    <div className={styles.comingSoon}>
+      <h3><GiClapperboard size={24} /> Em breve</h3>
+      <section className={styles.comingSoonContainer}>
+        {
+          slice.items.map(movieBanner => (
+            <PrismicLink
+              data-slice-type={slice.slice_type}
+              data-slice-variation={slice.variation}
+              className={styles.movieBannerContainer}
+              field={movieBanner.link}
+              key={movieBanner.title}
+            >
+              <div className={styles.movieBannerImageContainer}>
+                <Image 
+                  src={String(movieBanner.banner.url)} 
+                  alt={String(movieBanner.banner.alt)}
+                  fill
+                />
+              </div>
+              <h3>
+                {movieBanner.title}
+              </h3>
+              {
+                slice?.primary?.comingIn &&
+                <div className={styles.movieBannerFlagDate}>
+                  <div className={styles.dayContainer}>
+                    <p className={styles.month}>{months[new Date(String(movieBanner.comingIn)).getMonth()]}</p>
+                    <p className={styles.day}>{new Date(String(movieBanner.comingIn)).getDate()}</p>
+                  </div>
+                  <p className={styles.year}>{new Date(String(movieBanner.comingIn)).getFullYear()}</p>
+                </div>
+              }
+            </PrismicLink>
+          ))
+        }
+      </section>
+    </div>
   );
 };
 

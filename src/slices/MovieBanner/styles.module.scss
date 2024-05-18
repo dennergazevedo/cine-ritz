@@ -65,6 +65,34 @@
   }
 }
 
+.comingSoon{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 80vw;
+  margin: var(--spacing-10) auto;
+
+  >h3{
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    font-size: var(--font-size-index);
+    margin-bottom: var(--spacing-6);
+    font-weight: normal;
+  }
+}
+
+.comingSoonContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
 @media (min-width: 1024px){
   .movieBannerContainer{
     width: 30%;
@@ -77,5 +105,9 @@
         object-fit: cover;
       }
     }
+  }
+
+  .comingSoon{
+    width: 60vw;
   }
 }
