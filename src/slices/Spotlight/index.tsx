@@ -12,10 +12,13 @@ import Slider from "@/app/components/Slider";
 
 import { BiCameraMovie } from "react-icons/bi";
 import { FiPlus } from "react-icons/fi";
+import { getMovieLink } from "@/utils/link";
 
 export type SpotlightProps = SliceComponentProps<Content.SpotlightSlice>;
 
 const Spotlight = ({ slice }: SpotlightProps): JSX.Element => {
+  console.log("slice", slice.items[0]);
+
   return (
     <div className={styles.inTheaters}>
       <h3>
@@ -23,7 +26,7 @@ const Spotlight = ({ slice }: SpotlightProps): JSX.Element => {
         Em exibição
       </h3>
       <Slider>
-        {slice.items.map(spotlight => (
+        {slice.items.map((spotlight) => (
           <section
             data-slice-type={slice.slice_type}
             data-slice-variation={slice.variation}
@@ -31,7 +34,8 @@ const Spotlight = ({ slice }: SpotlightProps): JSX.Element => {
             key={String(spotlight.name)}
           >
             <PrismicLink
-              field={slice.primary.link}
+              field={spotlight.link}
+              href={getMovieLink(spotlight.link)}
               className={styles.spotlightImageContainer}
             >
               <Image
@@ -41,7 +45,10 @@ const Spotlight = ({ slice }: SpotlightProps): JSX.Element => {
               />
             </PrismicLink>
             <div className={styles.spotlightContent}>
-              <PrismicLink field={spotlight.link}>
+              <PrismicLink
+                field={spotlight.link}
+                href={getMovieLink(spotlight.link)}
+              >
                 <PrismicRichText field={spotlight.name} />
               </PrismicLink>
               <div className={styles.spotlightContentInfo}>
@@ -61,9 +68,13 @@ const Spotlight = ({ slice }: SpotlightProps): JSX.Element => {
                 title={spotlight.name}
                 iframe={String(spotlight.trailer.html)}
               />
-              <PrismicLink field={spotlight.link} className={styles.showMoreLink}>
-                <FiPlus size={20}/>
-                Ver mais
+              <PrismicLink
+                field={spotlight.link}
+                href={getMovieLink(spotlight.link)}
+                className={styles.showMoreLink}
+              >
+                <FiPlus size={20} />
+                Saiba mais
               </PrismicLink>
             </div>
           </section>

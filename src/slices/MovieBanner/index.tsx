@@ -7,6 +7,7 @@ import { months } from "@/utils/month";
 export type MovieBannerProps = SliceComponentProps<Content.MovieBannerSlice>;
 
 import { GiClapperboard } from "react-icons/gi";
+import { getMovieLink } from "@/utils/link";
 
 const MovieBanner = ({ slice }: MovieBannerProps): JSX.Element => {
 
@@ -22,6 +23,7 @@ const MovieBanner = ({ slice }: MovieBannerProps): JSX.Element => {
               className={styles.movieBannerContainer}
               field={movieBanner.link}
               key={movieBanner.title}
+              href={getMovieLink(movieBanner.link)}
             >
               <div className={styles.movieBannerImageContainer}>
                 <Image 

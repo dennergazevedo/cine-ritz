@@ -1,6 +1,7 @@
 import { Content } from "@prismicio/client";
-import styles from './styles.module.scss'
 import { PrismicLink, PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { getIntitutionalLink } from "@/utils/link";
+import styles from './styles.module.scss'
 
 export type LinkListProps = SliceComponentProps<Content.LinkListSlice>;
 
@@ -14,7 +15,11 @@ const LinkList = ({ slice }: LinkListProps): JSX.Element => {
       <PrismicRichText field={slice.primary.title}/>
       {
         slice.items.map(link => (
-          <PrismicLink field={link.link} key={link.label}>
+          <PrismicLink 
+            field={link.link} 
+            key={link.label} 
+            href={getIntitutionalLink(link.link)}
+          >
             {link.label}
           </PrismicLink>
         ))

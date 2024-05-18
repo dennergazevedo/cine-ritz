@@ -9,6 +9,7 @@ import Image from "next/image";
 import Slider from "@/app/components/Slider";
 
 import { IoTicketOutline } from "react-icons/io5";
+import { getMovieLink } from "@/utils/link";
 
 export type PromotionProps = SliceComponentProps<Content.PromotionSlice>;
 
@@ -27,6 +28,7 @@ const Promotion = ({ slice }: PromotionProps): JSX.Element => {
               data-slice-variation={slice.variation}
               className={styles.promotionContainer}
               field={promotion.link}
+              href={getMovieLink(promotion.link)}
               key={promotion.title}
             >
               <Image
