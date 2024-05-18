@@ -1,0 +1,26 @@
+.movieBannerContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 50%;
+  position: relative;
+
+  .movieBannerImageContainer{
+    display: flex;
+    position: relative;
+    width: var(--movie-banner-size);
+    height: var(--movie-banner-height);
+
+    img{
+      object-fit: cover;
+      border-radius: var(--radius-medium);
+    }
+  }
+}
+
+@media (min-width: 1024px){
+  .movieBannerContainer{
+    width: 30%;
+  }
+}

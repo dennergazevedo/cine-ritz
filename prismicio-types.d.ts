@@ -4,6 +4,40 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type ComingsoonDocumentDataSlicesSlice = MovieBannerSlice;
+
+/**
+ * Content for ComingSoon documents
+ */
+interface ComingsoonDocumentData {
+  /**
+   * Slice Zone field in *ComingSoon*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: comingsoon.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ComingsoonDocumentDataSlicesSlice>;
+}
+
+/**
+ * ComingSoon document from Prismic
+ *
+ * - **API ID**: `comingsoon`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ComingsoonDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ComingsoonDocumentData>,
+    "comingsoon",
+    Lang
+  >;
+
 type FooterDocumentDataSlicesSlice = LinkListSlice;
 
 /**
@@ -145,6 +179,7 @@ export type SpotlightDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | ComingsoonDocument
   | FooterDocument
   | PageDocument
   | SpotlightDocument;
@@ -217,6 +252,71 @@ type LinkListSliceVariation = LinkListSliceDefault;
 export type LinkListSlice = prismic.SharedSlice<
   "link_list",
   LinkListSliceVariation
+>;
+
+/**
+ * Primary content in *MovieBanner → Default → Primary*
+ */
+export interface MovieBannerSliceDefaultPrimary {
+  /**
+   * Título field in *MovieBanner → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie_banner.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Banner field in *MovieBanner → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie_banner.default.primary.banner
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  banner: prismic.ImageField<never>;
+
+  /**
+   * Data de Lançamento field in *MovieBanner → Default → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie_banner.default.primary.comingIn
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  comingIn: prismic.DateField;
+}
+
+/**
+ * Default variation for MovieBanner Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MovieBannerSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MovieBannerSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MovieBanner*
+ */
+type MovieBannerSliceVariation = MovieBannerSliceDefault;
+
+/**
+ * MovieBanner Shared Slice
+ *
+ * - **API ID**: `movie_banner`
+ * - **Description**: MovieBanner
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MovieBannerSlice = prismic.SharedSlice<
+  "movie_banner",
+  MovieBannerSliceVariation
 >;
 
 /**
@@ -389,6 +489,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      ComingsoonDocument,
+      ComingsoonDocumentData,
+      ComingsoonDocumentDataSlicesSlice,
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataSlicesSlice,
@@ -404,6 +507,10 @@ declare module "@prismicio/client" {
       LinkListSliceDefaultItem,
       LinkListSliceVariation,
       LinkListSliceDefault,
+      MovieBannerSlice,
+      MovieBannerSliceDefaultPrimary,
+      MovieBannerSliceVariation,
+      MovieBannerSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

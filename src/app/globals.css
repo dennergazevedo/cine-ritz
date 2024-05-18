@@ -41,6 +41,9 @@
   --spotlight-max-size: 400px;
   --spotlight-image-proportion: 1.40;
 
+  --movie-banner-size: 300px;
+  --movie-banner-height: calc(var(--movie-banner-size) * var(--spotlight-image-proportion));
+
   --font-size-small: 12px;
   --font-size-default: 14px;
   --font-size-normal: 16px;

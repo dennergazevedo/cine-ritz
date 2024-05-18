@@ -1,0 +1,28 @@
+{
+  "format": "custom",
+  "id": "comingsoon",
+  "label": "ComingSoon",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "movie_banner": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

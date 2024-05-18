@@ -1,0 +1,41 @@
+{
+  "id": "movie_banner",
+  "type": "SharedSlice",
+  "name": "MovieBanner",
+  "description": "MovieBanner",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Título",
+            "placeholder": ""
+          }
+        },
+        "banner": {
+          "type": "Image",
+          "config": {
+            "label": "Banner",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "comingIn": {
+          "type": "Date",
+          "config": {
+            "label": "Data de Lançamento",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import { components } from "@/slices";
 import styles from './page.module.scss'
 import Slider from "./components/Slider";
 import { GiClapperboard } from "react-icons/gi";
+import ComingSoon from "./components/ComingSoon";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -27,6 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Index() {
   const client = createClient();
   const spotlight = await client.getByUID("spotlight", "spotlight");
+  const comingSoon = await client.getByUID("comingsoon", "coming-soon");
 
   return (
     <main className={styles.main}>
@@ -38,6 +40,7 @@ export default async function Index() {
       </div>
       <div className={styles.comingSoon}>
         <h3><GiClapperboard size={24} /> Em breve</h3>
+        <ComingSoon banners={comingSoon.data.slices}/>
       </div>
     </main>
   )
