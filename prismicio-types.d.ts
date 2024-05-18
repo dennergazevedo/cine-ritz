@@ -72,7 +72,153 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = SpotlightSlice | RichTextSlice;
+type MovieDocumentDataSlicesSlice =
+  | ScheduleSlice
+  | RichTextSlice
+  | PromotionSlice;
+
+/**
+ * Content for Filme documents
+ */
+interface MovieDocumentData {
+  /**
+   * Título field in *Filme*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Sinopse field in *Filme*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie.sinopse
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  sinopse: prismic.RichTextField;
+
+  /**
+   * Duração field in *Filme*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie.duration
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  duration: prismic.KeyTextField;
+
+  /**
+   * Classificação field in *Filme*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie.classification
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  classification: prismic.KeyTextField;
+
+  /**
+   * Trailer field in *Filme*
+   *
+   * - **Field Type**: Embed
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie.trailer
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#embed
+   */
+  trailer: prismic.EmbedField;
+
+  /**
+   * Imagem field in *Filme*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Tema field in *Filme*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie.theme
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  theme: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Filme*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<MovieDocumentDataSlicesSlice> /**
+   * Meta Description field in *Filme*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: movie.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Filme*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: movie.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Filme*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: movie.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Filme document from Prismic
+ *
+ * - **API ID**: `movie`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MovieDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<MovieDocumentData>, "movie", Lang>;
+
+type PageDocumentDataSlicesSlice =
+  | PromotionSlice
+  | LinkListSlice
+  | MovieBannerSlice
+  | SpotlightSlice
+  | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -215,6 +361,7 @@ export type SpotlightDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | ComingsoonDocument
   | FooterDocument
+  | MovieDocument
   | PageDocument
   | PromotionDocument
   | SpotlightDocument;
@@ -465,6 +612,96 @@ export type RichTextSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Schedule → Default → Primary*
+ */
+export interface ScheduleSliceDefaultPrimary {
+  /**
+   * Data field in *Schedule → Default → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: schedule.default.primary.date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date: prismic.DateField;
+}
+
+/**
+ * Primary content in *Schedule → Items*
+ */
+export interface ScheduleSliceDefaultItem {
+  /**
+   * Sala field in *Schedule → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: schedule.items[].movieTheater
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  movieTheater: prismic.KeyTextField;
+
+  /**
+   * Horário field in *Schedule → Items*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: schedule.items[].time
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  time: prismic.TimestampField;
+
+  /**
+   * Idioma field in *Schedule → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: schedule.items[].language
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  language: prismic.KeyTextField;
+
+  /**
+   * Preço field in *Schedule → Items*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: schedule.items[].price
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  price: prismic.NumberField;
+}
+
+/**
+ * Default variation for Schedule Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScheduleSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ScheduleSliceDefaultPrimary>,
+  Simplify<ScheduleSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Schedule*
+ */
+type ScheduleSliceVariation = ScheduleSliceDefault;
+
+/**
+ * Schedule Shared Slice
+ *
+ * - **API ID**: `schedule`
+ * - **Description**: Schedule
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScheduleSlice = prismic.SharedSlice<
+  "schedule",
+  ScheduleSliceVariation
+>;
+
+/**
  * Primary content in *Spotlight → Default → Primary*
  */
 export interface SpotlightSliceDefaultPrimary {
@@ -595,6 +832,9 @@ declare module "@prismicio/client" {
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataSlicesSlice,
+      MovieDocument,
+      MovieDocumentData,
+      MovieDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
@@ -622,6 +862,11 @@ declare module "@prismicio/client" {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      ScheduleSlice,
+      ScheduleSliceDefaultPrimary,
+      ScheduleSliceDefaultItem,
+      ScheduleSliceVariation,
+      ScheduleSliceDefault,
       SpotlightSlice,
       SpotlightSliceDefaultPrimary,
       SpotlightSliceVariation,

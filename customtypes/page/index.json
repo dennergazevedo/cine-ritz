@@ -27,6 +27,15 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "promotion": {
+              "type": "SharedSlice"
+            },
+            "link_list": {
+              "type": "SharedSlice"
+            },
+            "movie_banner": {
+              "type": "SharedSlice"
+            },
             "spotlight": {
               "type": "SharedSlice"
             },

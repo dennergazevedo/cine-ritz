@@ -1,0 +1,113 @@
+{
+  "format": "page",
+  "id": "movie",
+  "label": "Filme",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Título",
+          "placeholder": ""
+        }
+      },
+      "sinopse": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Sinopse",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
+        }
+      },
+      "duration": {
+        "type": "Text",
+        "config": {
+          "label": "Duração",
+          "placeholder": ""
+        }
+      },
+      "classification": {
+        "type": "Text",
+        "config": {
+          "label": "Classificação",
+          "placeholder": ""
+        }
+      },
+      "trailer": {
+        "type": "Embed",
+        "config": {
+          "label": "Trailer",
+          "placeholder": ""
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Imagem",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "theme": {
+        "type": "Text",
+        "config": {
+          "label": "Tema",
+          "placeholder": ""
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "schedule": {
+              "type": "SharedSlice"
+            },
+            "rich_text": {
+              "type": "SharedSlice"
+            },
+            "promotion": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

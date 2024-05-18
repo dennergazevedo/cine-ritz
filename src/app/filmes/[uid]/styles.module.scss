@@ -1,0 +1,131 @@
+.moviePageContainer{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--spacing-4);
+  gap: var(--spacing-5);
+
+  .moviePagePrincipal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    .moviePageImageContainer{
+      display: flex;
+      width: calc(100vw - var(--spacing-8));
+      height: calc((100vw - var(--spacing-8)) * var(--spotlight-image-proportion));
+      position: relative;
+
+      img{
+        object-fit: contain;
+      }
+    }
+
+    .moviePageContent{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      margin-top: var(--spacing-5);
+      gap: var(--spacing-5);
+      padding: var(--spacing-4);
+  
+      .moviePageTitle{
+        font-size: var(--font-size-index);
+      }
+  
+      .moviePageAttributesContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        gap: var(--spacing-3);
+  
+        .moviePageAttributes{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          gap: var(--spacing-2);
+          color: var(--gray-scale-3);
+        }
+      }
+  
+      .moviePageSinopse{
+        margin-top: var(--spacing-5);
+  
+        *{
+          line-height: 150%;
+        }
+      }
+    }
+  }
+
+  .moviePageTrailer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: var(--spacing-5);
+    padding: var(--spacing-4);
+
+    h3{
+      margin-bottom: var(--spacing-3);
+    }
+
+    div{
+      display: flex;
+      width: 100%;
+
+      iframe{
+        width: calc(100vw - var(--spacing-6));
+        height: calc((100vw - var(--spacing-6)) * 0.565)
+      }
+    }
+  }
+}
+
+@media(min-width: 1024px){
+  .moviePageContainer{
+    max-width: 80vw;
+    margin: 0 auto;
+
+    .moviePagePrincipal{
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      background: var(--bg-color);
+      padding: var(--spacing-8);
+      gap: var(--spacing-12);
+
+      .moviePageImageContainer{
+        width: 40vw;
+        height: calc(40vw - var(--spacing-10));
+        min-height: calc(40vw - var(--spacing-10));
+      }
+
+      .moviePageContent{
+        .moviePageSinopse{
+          max-width: 40vw;
+        }
+      }
+    }
+  
+    .moviePageTrailer{
+      div{
+        iframe{
+          width: calc(80vw - var(--spacing-6));
+          height: calc((80vw - var(--spacing-6)) * 0.565)
+        }
+      }
+    }
+  }
+}

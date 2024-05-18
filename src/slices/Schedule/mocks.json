@@ -1,0 +1,52 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"date": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2018-08-01"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"movieTheater",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "model",
+							"type": "Text"
+						}
+					],
+					[
+						"time",
+						{
+							"__TYPE__": "FieldContent",
+							"type": "Timestamp",
+							"value": "2019-10-16T00:03:00Z"
+						}
+					],
+					[
+						"language",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "able",
+							"type": "Text"
+						}
+					],
+					[
+						"price",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "39",
+							"type": "Number"
+						}
+					]
+				]
+			}
+		]
+	}
+]

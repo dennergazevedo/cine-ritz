@@ -7,5 +7,6 @@ export const components = {
   movie_banner: dynamic(() => import("./MovieBanner")),
   promotion: dynamic(() => import("./Promotion")),
   rich_text: dynamic(() => import("./RichText")),
+  schedule: dynamic(() => import("./Schedule")),
   spotlight: dynamic(() => import("./Spotlight")),
 };

@@ -1,0 +1,55 @@
+{
+  "id": "schedule",
+  "type": "SharedSlice",
+  "name": "Schedule",
+  "description": "Schedule",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "date": {
+          "type": "Date",
+          "config": {
+            "label": "Data",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "movieTheater": {
+          "type": "Text",
+          "config": {
+            "label": "Sala",
+            "placeholder": ""
+          }
+        },
+        "time": {
+          "type": "Timestamp",
+          "config": {
+            "label": "Horário",
+            "placeholder": ""
+          }
+        },
+        "language": {
+          "type": "Text",
+          "config": {
+            "label": "Idioma",
+            "placeholder": ""
+          }
+        },
+        "price": {
+          "type": "Number",
+          "config": {
+            "label": "Preço",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}
