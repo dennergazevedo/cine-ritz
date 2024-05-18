@@ -47,8 +47,6 @@ export default async function Page({ params }: { params: Params }) {
     .getByUID("movie", params.uid)
     .catch(() => notFound());
 
-  console.log("page", page);
-
   return (
     <section className={styles.moviePageContainer}>
       <div className={styles.moviePagePrincipal}>
