@@ -1,0 +1,70 @@
+.trailerButton{
+  display: flex;
+  padding: var(--spacing-3) var(--spacing-8);
+  background-color: var(--primary-color);
+  border-radius: var(--radius-full);
+  color: var(--neutral-color);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  align-items: center;
+  gap: var(--spacing-3);
+  font-size: var(--font-size-default);
+  white-space: nowrap;
+  user-select: none;
+
+  &:hover{
+    background-color: var(--primary-color-hover);
+  }
+}
+
+.trailerContent{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacing-5);
+
+  p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-2);
+    color: var(--bg-color);
+  }
+
+  h4{
+    font-size: var(--font-size-title);
+    color: var(--bg-color);
+  }
+
+  h3{
+    color: var(--bg-color);
+    font-size: var(--font-size-normal);
+    font-weight: normal;
+  }
+
+  >div{
+    width: 80vw;
+    height: 45.2vw;
+
+    iframe{
+      width: 80vw;
+      height: 45.2vw;
+    }
+  }
+}
+
+@media(min-width: 1024px){
+  .trailerContent{
+    >div{
+      width: 55vw;
+      height: 31.07vw;
+  
+      iframe{
+        width: 55vw;
+        height: 31.07vw;
+      }
+    }
+  }
+}

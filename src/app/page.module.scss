@@ -1,0 +1,30 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-4) 0;
+}
+
+.bg{
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 80vh;
+  z-index: -1;
+
+  img{
+    width: 100vw;
+    height: 80vh;
+    object-fit: cover;
+    opacity: .1;
+  }
+}
+
+@media (min-width: 1024px){
+  .main{
+    padding: var(--spacing-4);
+  }
+}
