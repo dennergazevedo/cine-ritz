@@ -8,6 +8,7 @@ import { components } from "@/slices";
 
 import styles from './page.module.scss'
 import Slider from "./components/Slider";
+import { GiClapperboard } from "react-icons/gi";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -29,9 +30,15 @@ export default async function Index() {
 
   return (
     <main className={styles.main}>
-      <Slider>
-        <SliceZone slices={spotlight.data.slices} components={components} />
-      </Slider>
+      <div className={styles.inTheaters}>
+        <h3>Em exibição</h3>
+        <Slider>
+          <SliceZone slices={spotlight.data.slices} components={components} />
+        </Slider>
+      </div>
+      <div className={styles.comingSoon}>
+        <h3><GiClapperboard size={24} /> Em breve</h3>
+      </div>
     </main>
   )
 }

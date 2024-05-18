@@ -14,7 +14,7 @@ const LinkList = ({ slice }: LinkListProps): JSX.Element => {
       <PrismicRichText field={slice.primary.title}/>
       {
         slice.items.map(link => (
-          <PrismicLink field={link.link}>
+          <PrismicLink field={link.link} key={link.label}>
             {link.label}
           </PrismicLink>
         ))
