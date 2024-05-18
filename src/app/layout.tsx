@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Image from "next/image";
 import bg from './assets/bg.jpg';
+import Modal from "./components/Modal";
 
 const ubuntu = Ubuntu({
   weight: ["400", "500", "700"],
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       <body className={ubuntu.className}>
+        <Modal />
         <div className={styles.bg}>
           <Image src={bg} alt="foto de cinema de background"/>
         </div>

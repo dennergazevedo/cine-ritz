@@ -10,8 +10,6 @@ export type SpotlightProps = SliceComponentProps<Content.SpotlightSlice>;
 
 const Spotlight = ({ slice }: SpotlightProps): JSX.Element => {
 
-  console.log("slice", slice)
-
   return (
     <section
       data-slice-type={slice.slice_type}

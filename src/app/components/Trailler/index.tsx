@@ -1,14 +1,32 @@
 'use client'
 import styles from './styles.module.scss'
-import { Fragment, useState } from "react";
+import { Fragment, useCallback } from "react";
 import { IoMdPlay } from "react-icons/io";
-import Modal from '../Modal';
 import { PrismicRichText } from '@prismicio/react';
 
-const Trailer: React.FC<TrailerProps> = ({ title, iframe }: TrailerProps) => {
-  const [isOpened, setIsOpened] = useState<boolean>(false);
+const TrailerContent: React.FC<TrailerProps> = ({ title, iframe }: TrailerProps) => {
+  return (
+    <div className={styles.trailerContent}>
+      <p>
+        Filme: <PrismicRichText field={title}/>
+      </p>
+      <h4>Trailer</h4>
+      <div dangerouslySetInnerHTML={{__html: iframe}} />
+    </div>
+  )
+}
 
-  const toggle = () => setIsOpened(prev => !prev);
+const Trailer: React.FC<TrailerProps> = ({ title, iframe }: TrailerProps) => {
+
+  const toggle = useCallback(() => {
+    if(typeof window !== 'undefined'){
+      window.dispatchEvent(new CustomEvent('@cine:openModal', {
+        detail:{
+          children: <TrailerContent title={title} iframe={iframe}/>
+        } 
+      }))
+    }
+  }, [])
 
   return (
     <Fragment>
@@ -16,15 +34,6 @@ const Trailer: React.FC<TrailerProps> = ({ title, iframe }: TrailerProps) => {
         <IoMdPlay size={20}/>
         <p>Assistir ao trailer</p>
       </button>
-      <Modal isOpened={isOpened} toggle={toggle}>
-        <div className={styles.trailerContent}>
-          <p>
-            Filme: <PrismicRichText field={title}/>
-          </p>
-          <h4>Trailer</h4>
-          <div dangerouslySetInnerHTML={{__html: iframe}} />
-        </div>
-      </Modal>
     </Fragment>
   )
 }
