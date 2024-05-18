@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from "react-icons/io";
@@ -12,7 +13,7 @@ const Modal: React.FC = () => {
   const handleEvent = useCallback((event: any) => {
     setIsOpened(true)
     setChidrenBlock(event.detail.children)
-  }, [])
+  }, [setIsOpened, setChidrenBlock])
 
   useEffect(() => {
     if(typeof window !== 'undefined'){

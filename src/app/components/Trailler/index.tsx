@@ -26,7 +26,7 @@ const Trailer: React.FC<TrailerProps> = ({ title, iframe }: TrailerProps) => {
         } 
       }))
     }
-  }, [])
+  }, [title, iframe])
 
   return (
     <Fragment>
