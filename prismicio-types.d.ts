@@ -72,6 +72,71 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
+type InstitutionalDocumentDataSlicesSlice = PromotionSlice | RichTextSlice;
+
+/**
+ * Content for Institucional documents
+ */
+interface InstitutionalDocumentData {
+  /**
+   * Slice Zone field in *Institucional*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: institutional.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<InstitutionalDocumentDataSlicesSlice> /**
+   * Meta Description field in *Institucional*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: institutional.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Institucional*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: institutional.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Institucional*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: institutional.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Institucional document from Prismic
+ *
+ * - **API ID**: `institutional`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type InstitutionalDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<InstitutionalDocumentData>,
+    "institutional",
+    Lang
+  >;
+
 type MovieDocumentDataSlicesSlice =
   | ScheduleSlice
   | RichTextSlice
@@ -361,6 +426,7 @@ export type SpotlightDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | ComingsoonDocument
   | FooterDocument
+  | InstitutionalDocument
   | MovieDocument
   | PageDocument
   | PromotionDocument
@@ -832,6 +898,9 @@ declare module "@prismicio/client" {
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataSlicesSlice,
+      InstitutionalDocument,
+      InstitutionalDocumentData,
+      InstitutionalDocumentDataSlicesSlice,
       MovieDocument,
       MovieDocumentData,
       MovieDocumentDataSlicesSlice,
