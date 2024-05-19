@@ -7,6 +7,7 @@ import styles from './styles.module.scss'
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { SliceZone } from "@prismicio/react";
+import BackButton from "@/app/components/BackButton";
 
 type Params = { uid: string };
 
@@ -42,6 +43,7 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <section className={styles.institutionalPageContainer}>
+      <BackButton />
       <SliceZone slices={page.data.slices} components={components} />
     </section>
   )

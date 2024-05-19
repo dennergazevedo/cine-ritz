@@ -15,6 +15,7 @@ import { MdOutlineLocalMovies } from "react-icons/md";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import { Fragment } from "react";
+import BackButton from "@/app/components/BackButton";
 
 type Params = { uid: string };
 
@@ -50,6 +51,7 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <section className={styles.moviePageContainer}>
+      <BackButton />
       <div className={styles.moviePagePrincipal}>
         {
           page.data.comingSoon &&
