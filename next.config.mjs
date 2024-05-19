@@ -10,7 +10,16 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  images: { domains: ['images.prismic.io', 'images.unsplash.com'] }
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.prismic.io',
+        port: '',
+        pathname: '/cineritzjm/**',
+      }
+    ],
+  }
 };
 
 export default nextConfig;

@@ -224,6 +224,18 @@ interface MovieDocumentData {
   theme: prismic.KeyTextField;
 
   /**
+   * Em breve field in *Filme*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: movie.comingSoon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  comingSoon: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *Filme*
    *
    * - **Field Type**: Slice Zone

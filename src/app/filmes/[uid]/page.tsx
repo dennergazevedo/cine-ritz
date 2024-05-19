@@ -14,6 +14,7 @@ import { TiDocumentText } from "react-icons/ti";
 import { MdOutlineLocalMovies } from "react-icons/md";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
+import { Fragment } from "react";
 
 type Params = { uid: string };
 
@@ -50,6 +51,12 @@ export default async function Page({ params }: { params: Params }) {
   return (
     <section className={styles.moviePageContainer}>
       <div className={styles.moviePagePrincipal}>
+        {
+          page.data.comingSoon &&
+          <div className={styles.moviePageComingSoon}>
+            Em breve
+          </div>
+        }
         <div className={styles.moviePageImageContainer}>
           <Image 
             src={String(page.data.image.url)} 
@@ -86,10 +93,13 @@ export default async function Page({ params }: { params: Params }) {
           dangerouslySetInnerHTML={{__html: String(page.data.trailer.html)}} 
         />
       </div>
-      <div className={styles.moviePageSchedule}>
-        <h3><MdOutlineLocalMovies size={24} />Salas & Horários</h3>
-        <SliceZone slices={page.data.slices} components={components} />
-      </div>
+      {
+        page.data.slices.length ?
+        <div className={styles.moviePageSchedule}>
+          <h3><MdOutlineLocalMovies size={24} />Salas & Horários</h3>
+          <SliceZone slices={page.data.slices} components={components} />
+        </div> : <Fragment />
+      }
     </section>
   )
 }

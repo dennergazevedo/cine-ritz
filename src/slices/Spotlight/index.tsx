@@ -17,8 +17,6 @@ import { getMovieLink } from "@/utils/link";
 export type SpotlightProps = SliceComponentProps<Content.SpotlightSlice>;
 
 const Spotlight = ({ slice }: SpotlightProps): JSX.Element => {
-  console.log("slice", slice.items[0]);
-
   return (
     <div className={styles.inTheaters}>
       <h3>
